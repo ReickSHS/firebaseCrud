@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <title>Firebase</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/"> Firebase Crud</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="crud-container">
+            <div class="crud-header">
+                <h1>Estudiantes Registrados</h1>
+                <button class="button is-success" id="registerModal">
+                    <i class="fas fa-plus"></i>
+                    <span>Nuevo Estudiante</span>
+                </button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="students-table">
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="button is-warning">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="button is-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <div class="modal" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Registrar nuevo estudiante</p>
+                <button class="delete" aria-label="close" id="closeModal"></button>
+            </header>
+            <section class="modal-card-body">
+                <form id="register-form">
+                    <div class="field">
+                        <label class="label">Nombre</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" placeholder="Ingresa tu Nombre">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Apellido Paterno</label>
+                        <div class="control">
+                            <input class="input" type="text" name="apePat" placeholder="Ingresa tu apellido paterno">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Apellido Materno</label>
+                        <div class="control">
+                            <input class="input" type="text" name="apeMat" placeholder="Ingresa tu apellido materno">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Telefono</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-success" type="tel" name="cel" placeholder="+1 8976543241">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-phone"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-success" type="email" name="email" placeholder="usuario@mail.com">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Descripcion</label>
+                        <div class="control">
+                            <textarea class="textarea" name="desc" placeholder="Agrega una descripcion"></textarea>
+                        </div>
+                    </div>
+                    <!-- Content ... -->
+            </section>
+            <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">
+                    <i class="fas fa-save"></i>
+                    <span>Registrar</span>
+                </button>
+                </form>
+            </footer>
+        </div>
+    </div>
+    <div class="modal" name="modal-update" id="modal-update">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Actualizar estudiante</p>
+                <button class="delete" aria-label="close" id="closeUpdateModal"></button>
+            </header>
+            <section class="modal-card-body">
+                <form id="update-form">
+                    <div class="field">
+                        <label class="label">Nombre</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" placeholder="Ingresa tu Nombre">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Apellido Paterno</label>
+                        <div class="control">
+                            <input class="input" type="text" name="apePat" placeholder="Ingresa tu apellido paterno">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Apellido Materno</label>
+                        <div class="control">
+                            <input class="input" type="text" name="apeMat" placeholder="Ingresa tu apellido materno">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Telefono</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-success" type="tel" name="cel" placeholder="+1 8976543241">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-phone"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input is-success" type="email" name="email" placeholder="usuario@mail.com">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Descripcion</label>
+                        <div class="control">
+                            <textarea class="textarea" name="desc" placeholder="Agrega una descripcion"></textarea>
+                        </div>
+                    </div>
+                    <!-- Content ... -->
+            </section>
+            <footer class="modal-card-foot">
+                <button type="submit" class="button is-success">
+                    <i class="fas fa-save"></i>
+                    <span>Actualizar</span>
+                </button>
+                </form>
+            </footer>
+        </div>
+    </div>
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
